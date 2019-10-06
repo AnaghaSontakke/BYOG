@@ -1689,7 +1689,7 @@ GameObject:
   - component: {fileID: 303984160}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Interact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2998,7 +2998,7 @@ GameObject:
   - component: {fileID: 466238491}
   m_Layer: 0
   m_Name: PFB_Fridge
-  m_TagString: Untagged
+  m_TagString: Interact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -9437,7 +9437,7 @@ GameObject:
   - component: {fileID: 1399233457}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Interact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10864,7 +10864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpsCam: {fileID: 1642265340}
-  prefab: {fileID: 0}
+  prefab: {fileID: 1613538204601172, guid: fd045aa1cfec5fd48bf94b6ebfef3fc9, type: 2}
   delay: 0.1
   fullText: rosoft published the specs for XML file formats in 2003 and licensed them
     to competitors. Over the years there has been a push toward an open standards
@@ -13874,7 +13874,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4024848340353542, guid: 3d17997aaf2fc33409ffa2305a0d2dfa, type: 2}
       propertyPath: m_RootOrder
-      value: 33
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 4024848340353542, guid: 3d17997aaf2fc33409ffa2305a0d2dfa, type: 2}
       propertyPath: m_LocalScale.x

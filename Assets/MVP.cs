@@ -22,8 +22,11 @@ public class MVP : MonoBehaviour {
             if (hit.collider.tag.Equals("Interact"))
             {
                 Debug.Log("new ray colliding");
-                Instantiate(prefab, fpsCam.transform.position, Quaternion.identity);
-                StartCoroutine(ShowText());//it will call IEnumerator Show text which can use time and delays
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Instantiate(prefab, fpsCam.transform.position, Quaternion.identity);
+                    StartCoroutine(ShowText());//it will call IEnumerator Show text which can use time and delays
+                }
             }
 
         }
