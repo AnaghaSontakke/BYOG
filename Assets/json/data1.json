@@ -1,0 +1,15 @@
+
+[{"phase": 1,"milestone": 1,"text": "i am a sticky note","option": ["act","ignore"],"leading": "i will lead you to computer","clue": "i am not courage insaan"},
+{"phase": 1,"milestone": 2,"text": "i am a computer","option": ["act","ignore"],"leading": "i will lead you to knife","clue": "i am not courage wala person ka insaan"},
+{
+      "phase": 2,
+      "milestone": 1,
+      "text": "i am a knife",
+      "option": [
+        "act",
+        "ignore"
+      ],
+      "leading": "i will lead you to death",
+      "clue": "i am not courage wala umesh"
+    }
+  ]
