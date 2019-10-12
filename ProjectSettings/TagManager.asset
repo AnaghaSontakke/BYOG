@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interact
+  - menu
+  - controls
+  - credits
   layers:
   - Default
   - TransparentFX
