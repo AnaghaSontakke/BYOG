@@ -32,6 +32,7 @@ public class MVP : MonoBehaviour
     public float basetime = 0;
     public bool click_close = false;
     public int phase = 0, milestone = 0;
+    public GameObject nar;
 
     public string[] dial = { "This is where it started, and this is where it is going to end. I thought I will be staying here for my entire life. Well, life does take uncertain outcomes. Everything here takes me back in the time!",
          "She always says that I need to first know the \"WHY\" and asked me to check out everything here to get closer to the truth! So how will the empty drawers and cabinets talk to me? These experts are mostly useless",
@@ -85,8 +86,10 @@ public class MVP : MonoBehaviour
         for (int i = 0; i < 50; i++)
             visited[i] = false;
 
+        /*fpsCam = Camera.main;
         temp.enabled = false;
-        Cursor.visible = false;
+        fpsCam.enabled = true;*/
+        //Cursor.visible = false;
 
         //  obj = new Loadjson();
         //  Alldialogs = obj.Alldialogs;
@@ -147,7 +150,7 @@ public class MVP : MonoBehaviour
             if (hit.collider.tag.Equals("Interact"))
             {
 
-                Debug.Log(hit.collider.gameObject.name);
+                //Debug.Log(hit.collider.gameObject.name);
 
                 if ( Input.GetMouseButtonDown(0))
                 {
@@ -155,16 +158,9 @@ public class MVP : MonoBehaviour
                     Debug.Log(milestone);
                         if (milestone == 0 && curhit == 0)
                         {
-                           
-                           
-                            {
-                                StartCoroutine(ShowText(3,curhit, dial[2], "juice", "ignore", "chips"));
-                            
-                                
-
-                            }
+                           StartCoroutine(ShowText(3,curhit, dial[2], "juice", "ignore", "chips"));
                        
-                    }
+                        }
                         if (milestone == 1 && curhit == 1)
                         {
                             StartCoroutine(ShowTextnooptions(dial[5] + dial[6]));
@@ -246,75 +242,16 @@ public class MVP : MonoBehaviour
             else StartCoroutine(ShowTextnooptions(dial[37]));
         }
     }
-    [Obsolete]
-    IEnumerator Start_routine()
-    {
-        StartCoroutine(ShowTextnooptions("I will lead you to kitchen drawer"));
-        Debug.Log("1");
-
-        while (true)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, 3))
-            {
-                Debug.Log("if ke andar");
-                Debug.Log(hit.collider.gameObject.name);
-                if (hit.collider.tag.Equals("Interact"))
-                {
-                    Debug.Log("abhich click kar");
-
-                    int curhit = Convert.ToInt32(hit.collider.gameObject.name);
-                    Debug.Log(curhit);
-                    if (curhit == 0 && (Input.GetKey("e") || Input.GetKey("mouse 0")))
-                    {
-                       // StartCoroutine(ShowTextnooptions(Alldialogs.users[0].text)); //i am kitchen drawer
-                        break;
-                    }
-                }
-            }
-            yield return null;
-        }
-
-        visited[0] = true;
-        basetime = Time.time;
-        while (Time.time - basetime < 10) { yield return 0; }
-        Debug.Log("4");
-        //ShowTextnooptions(Alldialogs.users[1].text); //explain about game and stuff
-        Debug.Log("5");
-        playeractive = true;
-        basetime = Time.time;
-
-        while (Time.time - basetime < 10 && !visited[1])
-        {
-
-        }
-        if (!visited[1])
-        {
-           // ShowTextnooptions(Alldialogs.users[1].leading);
-        }
-        Debug.Log("6");
-        basetime = Time.time;
-
-        while (Time.time - basetime < 10 && !visited[1])
-        {
-
-        }
-        if (!visited[1])
-        {
-           // ShowTextnooptions(Alldialogs.users[1].clue);
-        }
-        Debug.Log("7");
-    }
-
+    
     [Obsolete]
 
     IEnumerator ShowText(int leader, int curhit, string curstring,string option1, string option2, string option3)
     {
-        playeractive = false;
-        Cursor.visible = true;
+        //playeractive = false;
+        //Cursor.visible = true;
         // Cursor.lockState;
         ui.gameObject.SetActive(true);
-
+        nar.gameObject.SetActive(true);
         b1.gameObject.SetActive(true);
         b2.gameObject.SetActive(true);
         b3.gameObject.SetActive(true);
@@ -330,45 +267,39 @@ public class MVP : MonoBehaviour
          GameObject.Find("Choice_button(2)").GetComponent<Text>().text = option2;
          GameObject.Find("Choice_button(3)").GetComponent<Text>().text = option3;
         */
-        Vector3 pos = fpsCam.transform.position;
+        /*Vector3 pos = fpsCam.transform.position;
         Quaternion rot = fpsCam.transform.rotation;
         temp.transform.position = pos;
         temp.transform.rotation = rot;
         temp.enabled = true;
         fpsCam.enabled = false;
-
-     //   string curstring = Alldialogs.users[curhit].text;
-      //  string lead = Alldialogs.users[curhit].leading;
-     //   string clue = Alldialogs.users[curhit].clue;
-        for (int i = 0; i < curstring.Length; i++)
-        {
-            string currentText = curstring.Substring(0, i + 1);
-            GameObject dt = GameObject.Find("Narrative_box");
-            dt.GetComponentInChildren<Text>().text = currentText;
-
-            yield return new WaitForSeconds(delay);
-        }
+*/
+        //   string curstring = Alldialogs.users[curhit].text;
+        //  string lead = Alldialogs.users[curhit].leading;
+        //   string clue = Alldialogs.users[curhit].clue;
+        StartCoroutine(dialog(curstring));
 
         while (!selected)
         {
             yield return null;
         }
 
-        fpsCam.enabled = true;
+        /*fpsCam.enabled = true;
         temp.enabled = false;
 
 
         
         fpsCam.transform.position = pos;
-        fpsCam.transform.rotation = rot;
+        fpsCam.transform.rotation = rot;*/
 
         visited[curhit] = true;
         //fpsCam.transform.rotation = temp.transform.rotation;
 
-        playeractive = true;
+        //playeractive = true;
         selected = false;
-        Cursor.visible = false;
+        //Cursor.visible = false;
         ui.gameObject.SetActive(false);
+        nar.gameObject.SetActive(false);
         StartCoroutine(ShowTextnooptions(dial[leader]));
         visited[curhit] = true;
     }
@@ -378,41 +309,41 @@ public class MVP : MonoBehaviour
     [Obsolete]
     IEnumerator ShowTextnooptions(string curstring)
     {
-        playeractive = false;
-        Cursor.visible = true;
+        //playeractive = false;
+        //Cursor.visible = true;
 
         ui.gameObject.SetActive(true);
-
+        nar.gameObject.SetActive(true);
         b1.gameObject.SetActive(false);
         b2.gameObject.SetActive(false);
         b3.gameObject.SetActive(false);
 
-        Vector3 pos = fpsCam.transform.position;
+        /*Vector3 pos = fpsCam.transform.position;
         Quaternion rot = fpsCam.transform.rotation;
         temp.transform.position = pos;
         temp.transform.rotation = rot;
         temp.enabled = true;
-        fpsCam.enabled = false;
+        fpsCam.enabled = false;*/
         StartCoroutine(dialog(curstring));
         
         while (!click_close)
         {
             yield return null;
         }
-        fpsCam.enabled = true;
+        /*fpsCam.enabled = true;
         temp.enabled = false;
        
         fpsCam.transform.position = pos;
-        fpsCam.transform.rotation = rot;
+        fpsCam.transform.rotation = rot;*/
 
         b1.gameObject.SetActive(true);
         b2.gameObject.SetActive(true);
         b3.gameObject.SetActive(true);
 
         ui.gameObject.SetActive(false);
-
+        nar.gameObject.SetActive(false);
         click_close = false;
-        Cursor.visible = false;
+        //Cursor.visible = false;
         basetime = Time.time;
     }
     IEnumerator dialog(string curstring)
@@ -420,8 +351,8 @@ public class MVP : MonoBehaviour
         for (int i = 0; i < curstring.Length; i++)
         {
             string currentText = curstring.Substring(0, i + 1);
-            GameObject dt = GameObject.Find("Narrative_box");
-            dt.GetComponentInChildren<Text>().text = currentText;
+           // GameObject dt = GameObject.Find("Narrative_box");
+            nar.GetComponentInChildren<Text>().text = currentText;
 
             yield return new WaitForSeconds(delay);
         }
