@@ -11469,6 +11469,8 @@ MonoBehaviour:
   playeractive: 0
   basetime: 0
   click_close: 0
+  phase: 0
+  milestone: 0
 --- !u!4 &1533436700 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 4adfac0d4e801af43b3de7d44b42e541,
@@ -14035,7 +14037,7 @@ GameObject:
   - component: {fileID: 1900614075}
   - component: {fileID: 1900614074}
   m_Layer: 0
-  m_Name: 10
+  m_Name: 0
   m_TagString: Interact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14048,7 +14050,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1900614072}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 2.216, y: 0.31, z: 0.991}
+  m_LocalPosition: {x: 2.216, y: 0.31, z: 1.386}
   m_LocalScale: {x: 0.009999998, y: 0.1, z: 0.09999999}
   m_Children: []
   m_Father: {fileID: 5785584}
@@ -14064,8 +14066,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 16.891384, y: 4.70556, z: 8.66494}
-  m_Center: {x: -19.314388, y: -1.3527799, z: 3.3324704}
+  m_Size: {x: 22.110136, y: 20.803719, z: 10.626667}
+  m_Center: {x: -46.748436, y: 6.6962957, z: 2.3516054}
 --- !u!23 &1900614075
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14080,8 +14082,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 2100000, guid: 320637af0ea5398409dfa8d8891e675a, type: 2}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15595,6 +15596,8 @@ MonoBehaviour:
   playeractive: 0
   basetime: 0
   click_close: 0
+  phase: 0
+  milestone: 0
 --- !u!1 &2108794476
 GameObject:
   m_ObjectHideFlags: 0
