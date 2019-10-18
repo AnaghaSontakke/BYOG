@@ -17,26 +17,23 @@ public class MVP : MonoBehaviour
     public GameObject b1;
     public GameObject b2;
     public GameObject b3;
-
+    
     public Camera temp;
     public float delay = 0.001f;
   //  public Loadjson obj;
   //  public Loadjson.RootObject Alldialogs;
-    public float delayClue = 30;
-    public static int curPlevel = 1, curMlevel = 1;
     public static int score = 0;
-    public static Quaternion fpsangle;
     public bool selected = false;
     public bool[] visited = new bool[50];
     public bool playeractive = false;
     public float basetime = 0;
     public bool click_close = false;
-    public int phase = 0, milestone = 0;
+    public int milestone = 0;
 
     public string[] dial = { "This is where it started, and this is where it is going to end. I thought I will be staying here for my entire life. Well, life does take uncertain outcomes. Everything here takes me back in the time!",
          "She always says that I need to first know the \"WHY\" and asked me to check out everything here to get closer to the truth! So how will the empty drawers and cabinets talk to me? These experts are mostly useless",
         "Oh, so ghosts don't live here yet! I will probably have to spend some time here, even if it means nothing much. Move ahead, shall I?",
-        "Let me take a tour and see what these guys might have changed in here",
+        "Let me take a tour and see what these guys might have changed in here, sofa might be a good start",
         "So, I will need to follow my instincts and search the house for clues as she instructed remembering my past, although I despise instructions.",
         "They haven't changed the place much though! Now that I have taken the tour of the house, I feel I can do some searching.",
         "Where should I begin? Maybe things closest to the entrance.",
@@ -82,20 +79,29 @@ public class MVP : MonoBehaviour
 
     public void Start()
     {
-        for (int i = 0; i < 50; i++)
-            visited[i] = false;
+
+
+        //This enables Main Camera
+
 
         temp.enabled = false;
+      
         Cursor.visible = false;
 
         //  obj = new Loadjson();
         //  Alldialogs = obj.Alldialogs;
-        ui.gameObject.SetActive(false);
-        StartCoroutine(ShowTextnooptions(dial[0]));
+       ui.gameObject.SetActive(false);
+        // ************************************************************** Read this*********************************************
+        //Initiating the first dialog box, ShowTextnooptions shows canvas with buttons disabled
+        //Using two coroutines _--- ShowText() and ShowTextnooptions()
+        //showtext has itself a call to showtextnooption with string passed as the leading dialog,
+        //**************************************************
+       StartCoroutine(ShowTextnooptions(dial[0]));
 
     }
     public void act_click()
     {
+        //triggered when option selected, attached to option buttons, updates score
         if(milestone>=3 && milestone<=5) score += 10;
         if (milestone == 6) score += 20;
         if (milestone >= 7) score += 30;
@@ -104,41 +110,45 @@ public class MVP : MonoBehaviour
 
     public void button_click()
     {
+        //attached to options and close button
         selected = true;
         ui.gameObject.SetActive(false);
-        milestone++;
     }
     public void close_click()
     {
+        //not really using this function
         click_close = true;
-        ui.gameObject.SetActive(false);
+     //   ui.gameObject.SetActive(false);
     }
-
+    public void exit_game()
+    {
+        Application.Quit();
+    }
 
     [Obsolete]
     void Update()
     {
 
-       /* if ((Time.time - basetime) > 10)
-        {
-            basetime = Time.time;
-            //set lead dialogs
-            if (phase == 0)
-            {
-                if (milestone == 0)
-                {
-                }
-                else
-                {
-                  //  StartCoroutine(ShowTextnooptions(Alldialogs.users[1].leading));
+        /* if ((Time.time - basetime) > 10)
+         {
+             basetime = Time.time;
+             //set lead dialogs
+             if (phase == 0)
+             {
+                 if (milestone == 0)
+                 {
+                 }
+                 else
+                 {
+                   //  StartCoroutine(ShowTextnooptions(Alldialogs.users[1].leading));
 
-                }
-            }
-            else if (phase == 1) { }
+                 }
+             }
+             else if (phase == 1) { }
 
-        }*/
+         }*/
 
-
+        
         Ray ray = new Ray(fpsCam.transform.position, fpsCam.transform.forward);
         RaycastHit hit;
 
@@ -146,18 +156,23 @@ public class MVP : MonoBehaviour
         {
             if (hit.collider.tag.Equals("Interact"))
             {
-
+                //interact object detected
                 Debug.Log(hit.collider.gameObject.name);
 
                 if ( Input.GetMouseButtonDown(0))
                 {
                     int curhit = Convert.ToInt32(hit.collider.gameObject.name);
                     Debug.Log(milestone);
+
+
+                    //matching the milestone with current hit object
                         if (milestone == 0 && curhit == 0)
                         {
-                           
+                           //kitchen drawer
                            
                             {
+
+                            //ShowText( leader dialog numer(to show next without options, --------------------)
                                 StartCoroutine(ShowText(3,curhit, dial[2], "juice", "ignore", "chips"));
                             
                                 
@@ -166,12 +181,13 @@ public class MVP : MonoBehaviour
                        
                     }
                         if (milestone == 1 && curhit == 1)
-                        {
+                        {//sofa wala
                             StartCoroutine(ShowTextnooptions(dial[5] + dial[6]));
                             milestone++;
                         }
                         if (milestone == 2 && curhit == 2)
                         {
+                            //fridge sticky note
                             
                             {
                                 StartCoroutine(ShowText(9,curhit, dial[8], "Act on what is right", "ignore", "Ignore it all!"));
@@ -245,71 +261,15 @@ public class MVP : MonoBehaviour
             if(score<=50) StartCoroutine(ShowTextnooptions(dial[36]));
             else StartCoroutine(ShowTextnooptions(dial[37]));
         }
-    }
-    [Obsolete]
-    IEnumerator Start_routine()
-    {
-        StartCoroutine(ShowTextnooptions("I will lead you to kitchen drawer"));
-        Debug.Log("1");
-
-        while (true)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, 3))
-            {
-                Debug.Log("if ke andar");
-                Debug.Log(hit.collider.gameObject.name);
-                if (hit.collider.tag.Equals("Interact"))
-                {
-                    Debug.Log("abhich click kar");
-
-                    int curhit = Convert.ToInt32(hit.collider.gameObject.name);
-                    Debug.Log(curhit);
-                    if (curhit == 0 && (Input.GetKey("e") || Input.GetKey("mouse 0")))
-                    {
-                       // StartCoroutine(ShowTextnooptions(Alldialogs.users[0].text)); //i am kitchen drawer
-                        break;
-                    }
-                }
-            }
-            yield return null;
-        }
-
-        visited[0] = true;
-        basetime = Time.time;
-        while (Time.time - basetime < 10) { yield return 0; }
-        Debug.Log("4");
-        //ShowTextnooptions(Alldialogs.users[1].text); //explain about game and stuff
-        Debug.Log("5");
-        playeractive = true;
-        basetime = Time.time;
-
-        while (Time.time - basetime < 10 && !visited[1])
-        {
-
-        }
-        if (!visited[1])
-        {
-           // ShowTextnooptions(Alldialogs.users[1].leading);
-        }
-        Debug.Log("6");
-        basetime = Time.time;
-
-        while (Time.time - basetime < 10 && !visited[1])
-        {
-
-        }
-        if (!visited[1])
-        {
-           // ShowTextnooptions(Alldialogs.users[1].clue);
-        }
-        Debug.Log("7");
-    }
-
+    }   
+  
     [Obsolete]
 
     IEnumerator ShowText(int leader, int curhit, string curstring,string option1, string option2, string option3)
     {
+
+        //This shows canvas with options
+        milestone++;
         playeractive = false;
         Cursor.visible = true;
         // Cursor.lockState;
@@ -322,14 +282,7 @@ public class MVP : MonoBehaviour
         b1.gameObject.GetComponentInChildren<Text>().text = option1;
         b2.gameObject.GetComponentInChildren<Text>().text = option2;
         b3.gameObject.GetComponentInChildren<Text>().text = option3;
-        /* GameObject.Find("Choice_button(1)").SetActive(true);
-         GameObject.Find("Choice_button(2)").SetActive(true);
-
-         GameObject.Find("Choice_button(3)").SetActive(true);
-         GameObject.Find("Choice_button(1)").GetComponent<Text>().text = option1;
-         GameObject.Find("Choice_button(2)").GetComponent<Text>().text = option2;
-         GameObject.Find("Choice_button(3)").GetComponent<Text>().text = option3;
-        */
+      
         Vector3 pos = fpsCam.transform.position;
         Quaternion rot = fpsCam.transform.rotation;
         temp.transform.position = pos;
@@ -340,6 +293,9 @@ public class MVP : MonoBehaviour
      //   string curstring = Alldialogs.users[curhit].text;
       //  string lead = Alldialogs.users[curhit].leading;
      //   string clue = Alldialogs.users[curhit].clue;
+
+
+        //displays the text
         for (int i = 0; i < curstring.Length; i++)
         {
             string currentText = curstring.Substring(0, i + 1);
@@ -349,11 +305,12 @@ public class MVP : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
 
+        //waiting for option to be clicked, when clicked, selected gets true
         while (!selected)
         {
             yield return null;
         }
-
+        
         fpsCam.enabled = true;
         temp.enabled = false;
 
@@ -366,11 +323,15 @@ public class MVP : MonoBehaviour
         //fpsCam.transform.rotation = temp.transform.rotation;
 
         playeractive = true;
+
+        //selected set to false for further use
         selected = false;
         Cursor.visible = false;
         ui.gameObject.SetActive(false);
+        //activationg lead dialog
         StartCoroutine(ShowTextnooptions(dial[leader]));
         visited[curhit] = true;
+
     }
 
 
@@ -386,22 +347,31 @@ public class MVP : MonoBehaviour
         b1.gameObject.SetActive(false);
         b2.gameObject.SetActive(false);
         b3.gameObject.SetActive(false);
+        //trying to save parameters to pas to temporary camera
 
         Vector3 pos = fpsCam.transform.position;
         Quaternion rot = fpsCam.transform.rotation;
+       
+        temp.enabled = true;
         temp.transform.position = pos;
         temp.transform.rotation = rot;
-        temp.enabled = true;
         fpsCam.enabled = false;
+
+       // GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
+        // StartCoroutine(dialog(curstring));
         StartCoroutine(dialog(curstring));
-        
-        while (!click_close)
+
+
+        //waiting for a close button to be clicked
+        while (!selected)
         {
             yield return null;
         }
-        fpsCam.enabled = true;
+        Debug.Log("fsd");
+       // fpsCam.enabled = true;
         temp.enabled = false;
-       
+         fpsCam.enabled = true;
+       // GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
         fpsCam.transform.position = pos;
         fpsCam.transform.rotation = rot;
 
@@ -411,9 +381,12 @@ public class MVP : MonoBehaviour
 
         ui.gameObject.SetActive(false);
 
-        click_close = false;
+        selected = false;
         Cursor.visible = false;
         basetime = Time.time;
+
+
+      
     }
     IEnumerator dialog(string curstring)
     {
