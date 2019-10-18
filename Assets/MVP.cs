@@ -28,7 +28,12 @@ public class MVP : MonoBehaviour
     public bool playeractive = false;
     public float basetime = 0;
     public bool click_close = false;
+<<<<<<< HEAD
     public int milestone = 0;
+=======
+    public int phase = 0, milestone = 0;
+    public GameObject nar;
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
 
     public string[] dial = { "This is where it started, and this is where it is going to end. I thought I will be staying here for my entire life. Well, life does take uncertain outcomes. Everything here takes me back in the time!",
          "She always says that I need to first know the \"WHY\" and asked me to check out everything here to get closer to the truth! So how will the empty drawers and cabinets talk to me? These experts are mostly useless",
@@ -84,9 +89,15 @@ public class MVP : MonoBehaviour
         //This enables Main Camera
 
 
+        /*fpsCam = Camera.main;
         temp.enabled = false;
+<<<<<<< HEAD
       
         Cursor.visible = false;
+=======
+        fpsCam.enabled = true;*/
+        //Cursor.visible = false;
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
 
         //  obj = new Loadjson();
         //  Alldialogs = obj.Alldialogs;
@@ -156,8 +167,13 @@ public class MVP : MonoBehaviour
         {
             if (hit.collider.tag.Equals("Interact"))
             {
+<<<<<<< HEAD
                 //interact object detected
                 Debug.Log(hit.collider.gameObject.name);
+=======
+
+                //Debug.Log(hit.collider.gameObject.name);
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
 
                 if ( Input.GetMouseButtonDown(0))
                 {
@@ -168,6 +184,7 @@ public class MVP : MonoBehaviour
                     //matching the milestone with current hit object
                         if (milestone == 0 && curhit == 0)
                         {
+<<<<<<< HEAD
                            //kitchen drawer
                            
                             {
@@ -178,8 +195,11 @@ public class MVP : MonoBehaviour
                                 
 
                             }
+=======
+                           StartCoroutine(ShowText(3,curhit, dial[2], "juice", "ignore", "chips"));
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
                        
-                    }
+                        }
                         if (milestone == 1 && curhit == 1)
                         {//sofa wala
                             StartCoroutine(ShowTextnooptions(dial[5] + dial[6]));
@@ -261,20 +281,30 @@ public class MVP : MonoBehaviour
             if(score<=50) StartCoroutine(ShowTextnooptions(dial[36]));
             else StartCoroutine(ShowTextnooptions(dial[37]));
         }
+<<<<<<< HEAD
     }   
   
+=======
+    }
+    
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
     [Obsolete]
 
     IEnumerator ShowText(int leader, int curhit, string curstring,string option1, string option2, string option3)
     {
+<<<<<<< HEAD
 
         //This shows canvas with options
         milestone++;
         playeractive = false;
         Cursor.visible = true;
+=======
+        //playeractive = false;
+        //Cursor.visible = true;
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
         // Cursor.lockState;
         ui.gameObject.SetActive(true);
-
+        nar.gameObject.SetActive(true);
         b1.gameObject.SetActive(true);
         b2.gameObject.SetActive(true);
         b3.gameObject.SetActive(true);
@@ -282,13 +312,26 @@ public class MVP : MonoBehaviour
         b1.gameObject.GetComponentInChildren<Text>().text = option1;
         b2.gameObject.GetComponentInChildren<Text>().text = option2;
         b3.gameObject.GetComponentInChildren<Text>().text = option3;
+<<<<<<< HEAD
       
         Vector3 pos = fpsCam.transform.position;
+=======
+        /* GameObject.Find("Choice_button(1)").SetActive(true);
+         GameObject.Find("Choice_button(2)").SetActive(true);
+
+         GameObject.Find("Choice_button(3)").SetActive(true);
+         GameObject.Find("Choice_button(1)").GetComponent<Text>().text = option1;
+         GameObject.Find("Choice_button(2)").GetComponent<Text>().text = option2;
+         GameObject.Find("Choice_button(3)").GetComponent<Text>().text = option3;
+        */
+        /*Vector3 pos = fpsCam.transform.position;
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
         Quaternion rot = fpsCam.transform.rotation;
         temp.transform.position = pos;
         temp.transform.rotation = rot;
         temp.enabled = true;
         fpsCam.enabled = false;
+<<<<<<< HEAD
 
      //   string curstring = Alldialogs.users[curhit].text;
       //  string lead = Alldialogs.users[curhit].leading;
@@ -304,31 +347,51 @@ public class MVP : MonoBehaviour
 
             yield return new WaitForSeconds(delay);
         }
+=======
+*/
+        //   string curstring = Alldialogs.users[curhit].text;
+        //  string lead = Alldialogs.users[curhit].leading;
+        //   string clue = Alldialogs.users[curhit].clue;
+        StartCoroutine(dialog(curstring));
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
 
         //waiting for option to be clicked, when clicked, selected gets true
         while (!selected)
         {
             yield return null;
         }
+<<<<<<< HEAD
         
         fpsCam.enabled = true;
+=======
+
+        /*fpsCam.enabled = true;
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
         temp.enabled = false;
 
 
         
         fpsCam.transform.position = pos;
-        fpsCam.transform.rotation = rot;
+        fpsCam.transform.rotation = rot;*/
 
         visited[curhit] = true;
         //fpsCam.transform.rotation = temp.transform.rotation;
 
+<<<<<<< HEAD
         playeractive = true;
 
         //selected set to false for further use
+=======
+        //playeractive = true;
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
         selected = false;
-        Cursor.visible = false;
+        //Cursor.visible = false;
         ui.gameObject.SetActive(false);
+<<<<<<< HEAD
         //activationg lead dialog
+=======
+        nar.gameObject.SetActive(false);
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
         StartCoroutine(ShowTextnooptions(dial[leader]));
         visited[curhit] = true;
 
@@ -339,26 +402,31 @@ public class MVP : MonoBehaviour
     [Obsolete]
     IEnumerator ShowTextnooptions(string curstring)
     {
-        playeractive = false;
-        Cursor.visible = true;
+        //playeractive = false;
+        //Cursor.visible = true;
 
         ui.gameObject.SetActive(true);
-
+        nar.gameObject.SetActive(true);
         b1.gameObject.SetActive(false);
         b2.gameObject.SetActive(false);
         b3.gameObject.SetActive(false);
         //trying to save parameters to pas to temporary camera
 
-        Vector3 pos = fpsCam.transform.position;
+        /*Vector3 pos = fpsCam.transform.position;
         Quaternion rot = fpsCam.transform.rotation;
        
         temp.enabled = true;
         temp.transform.position = pos;
         temp.transform.rotation = rot;
+<<<<<<< HEAD
         fpsCam.enabled = false;
 
        // GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
         // StartCoroutine(dialog(curstring));
+=======
+        temp.enabled = true;
+        fpsCam.enabled = false;*/
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
         StartCoroutine(dialog(curstring));
 
 
@@ -367,22 +435,32 @@ public class MVP : MonoBehaviour
         {
             yield return null;
         }
+<<<<<<< HEAD
         Debug.Log("fsd");
        // fpsCam.enabled = true;
+=======
+        /*fpsCam.enabled = true;
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
         temp.enabled = false;
          fpsCam.enabled = true;
        // GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
         fpsCam.transform.position = pos;
-        fpsCam.transform.rotation = rot;
+        fpsCam.transform.rotation = rot;*/
 
         b1.gameObject.SetActive(true);
         b2.gameObject.SetActive(true);
         b3.gameObject.SetActive(true);
 
         ui.gameObject.SetActive(false);
+<<<<<<< HEAD
 
         selected = false;
         Cursor.visible = false;
+=======
+        nar.gameObject.SetActive(false);
+        click_close = false;
+        //Cursor.visible = false;
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
         basetime = Time.time;
 
 
@@ -393,8 +471,8 @@ public class MVP : MonoBehaviour
         for (int i = 0; i < curstring.Length; i++)
         {
             string currentText = curstring.Substring(0, i + 1);
-            GameObject dt = GameObject.Find("Narrative_box");
-            dt.GetComponentInChildren<Text>().text = currentText;
+           // GameObject dt = GameObject.Find("Narrative_box");
+            nar.GetComponentInChildren<Text>().text = currentText;
 
             yield return new WaitForSeconds(delay);
         }

@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/aoimerascene.unity
     guid: d868c6d2a4fac674e9b0e1371c8c4eb6
+<<<<<<< HEAD
   - enabled: 1
     path: Assets/Menu.unity
     guid: 53befd01f3018c6449c31310751e8ab4
+=======
+>>>>>>> a52807dccc283c8fe6e9b85023e39cb28cc4298c
   m_configObjects: {}
