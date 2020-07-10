@@ -1,0 +1,97 @@
+
+[{"objref":0,"phase": 1,"milestone": 1,"text": "i am a kitchen drawer","option": [],"leading": "","clue": ""},
+{"objref":1,"phase": 1,"milestone": 2,"text": "explain why am i here","option": [],"leading": "i will lead you to fridge","clue": "i will lead you to fridge clue"},
+{"objref":2,"phase": 1,"milestone": 2,"text": "i am a fridge","option": ["act","ignore"],"leading": "i will lead you to TV","clue": "I will lead you to TV clue"},
+{"objref":3,"phase": 2,"milestone": 1,"text": "i am a TV","option": ["act","ignore2","ummmmm"],"leading": "i will lead you to toys","clue": "i will lead you to toys clue"},
+{
+	"objref":4,
+      "phase": 2,
+      "milestone": 2,
+      "text": "i am a toys",
+      "option": [
+        "act",
+        "ignore",
+	"annnnn"
+      ],
+      "leading": "i will lead you to computer",
+      "clue": "i will lead you to computer clue"
+    },
+{
+	"objref":5,
+      "phase": 2,
+      "milestone": 3,
+      "text": "i am a computer",
+      "option": [
+        "act",
+        "ignore",
+	"annnnn"
+      ],
+      "leading": "i will lead you to bathroom drawer",
+      "clue": "i will lead you to bathroom drawer clue"
+    },
+{
+	"objref":6,
+      "phase": 2,
+      "milestone": 4,
+      "text": "i am a bathroom drawer",
+      "option": [
+        "act",
+        "ignore",
+	"annnnn"
+      ],
+      "leading": "i will lead you to bed",
+      "clue": "i will lead you to bed clue"
+    },
+{
+	"objref":7,
+      "phase": 2,
+      "milestone": 5,
+      "text": "i am a bed",
+      "option": [
+        "act",
+        "ignore",
+	"annnnn"
+      ],
+      "leading": "i will lead you to dog",
+      "clue": "i will lead you to dog clue"
+    },
+{
+	"objref":8,
+      "phase": 3,
+      "milestone": 1,
+      "text": "i am a dog",
+      "option": [
+        "act",
+        "ignore",
+	"annnnn"
+      ],
+      "leading": "i will lead you to knife",
+      "clue": "i will lead you to knife clue"
+    },
+{
+	"objref":9,
+      "phase": 3,
+      "milestone": 2,
+      "text": "i am a knife",
+      "option": [
+        "act",
+        "ignore",
+	"annnnn"
+      ],
+      "leading": "i will lead you to bathroom",
+      "clue": "i will lead you to bathroom clue"
+    },
+{
+	"objref":10,
+      "phase": 3,
+      "milestone": 3,
+      "text": "i am a bathroom",
+      "option": [
+        "act",
+        "ignore",
+	"annnnn"
+      ],
+      "leading": "i will lead you to entrance",
+      "clue": "i will lead you to entrance clue"
+    }
+  ]
